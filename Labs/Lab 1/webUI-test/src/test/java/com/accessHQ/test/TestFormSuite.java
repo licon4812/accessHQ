@@ -1,8 +1,12 @@
+package com.accessHQ.test;
+
+import com.accessHQ.form.Form;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,16 +24,14 @@ public class TestFormSuite {
 
     @Test
     public void SubmitForm(){
-       driver.findElement(By.id("name")).sendKeys("James");
-       driver.findElement(By.id("email")).sendKeys("jalickolli@gmail.com");
-        driver.findElement(By.id("state")).sendKeys("NSW");;
-        driver.findElement(By.cssSelector("[for=agree]")).click();
-
-        driver.findElement(By.className("v-btn__content")).click();
-
-        var popupElement = driver.findElement(By.className("popup-message"));
-        new WebDriverWait(driver,15).until(ExpectedConditions.visibilityOf(popupElement));
-        Assertions.assertEquals("Thanks for your feedback James", popupElement.getText());
+        var form = new Form(driver);
+        form.setName("James");
+        form.setEmail("jalickolli@gmail.com");
+        form.setState("NSW");
+        form.clickAgree();
+        form.clickSubmit();
+        form.getPopUp();
+        Assertions.assertEquals("Thanks for your feedback James", form.getPopUp());
     }
 
     @AfterEach
