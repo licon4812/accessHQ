@@ -1,6 +1,7 @@
 package com.accessHQ.test;
 
 import com.accessHQ.models.PlanetPage;
+import com.accessHQ.strategies.DistanceMatchingStrategy;
 import com.accessHQ.strategies.NameMatchingStrategy;
 import com.accessHQ.strategies.RadiusMatchingStrategy;
 import org.junit.jupiter.api.AfterEach;
@@ -31,6 +32,13 @@ public class TestPlanetsSuite {
         var planet = new PlanetPage(driver);
         planet.clickExplore(new RadiusMatchingStrategy(58232));
         Assertions.assertEquals("Exploring Saturn", planet.getPopUp());
+    }
+
+    @Test
+    public void findPlanetWithDistanceOf57910000(){
+        var planet = new PlanetPage(driver);
+        planet.clickExplore(new DistanceMatchingStrategy(57910000L));
+        Assertions.assertEquals("Exploring Mercury", planet.getPopUp());
     }
 
 
