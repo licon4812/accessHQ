@@ -1,6 +1,5 @@
 package com.accessHQ.models;
 
-import com.accessHQ.strategies.MatchingStrategy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class PlanetPage {
     private final ChromeDriver driver;
@@ -17,9 +17,9 @@ public class PlanetPage {
         this.driver = driver;
     }
 
-    public void clickExplore(MatchingStrategy strategy) {
+    public void clickExplore(Predicate<Planet> strategy) {
         for(Planet planet: getPlanets()){
-            if(strategy.match(planet)){
+            if(strategy.test(planet)){
                 planet.clickExploreButton();
                 waitForPopupMessage();
                 break;

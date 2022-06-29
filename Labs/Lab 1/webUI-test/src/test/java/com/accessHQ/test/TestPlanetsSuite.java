@@ -1,9 +1,6 @@
 package com.accessHQ.test;
 
 import com.accessHQ.models.PlanetPage;
-import com.accessHQ.strategies.DistanceMatchingStrategy;
-import com.accessHQ.strategies.NameMatchingStrategy;
-import com.accessHQ.strategies.RadiusMatchingStrategy;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,23 +20,30 @@ public class TestPlanetsSuite {
     @Test
     public void testEarthExplore(){
         var planet = new PlanetPage(driver);
-        planet.clickExplore(new NameMatchingStrategy("Earth"));
+        planet.clickExplore(p -> p.getName().equalsIgnoreCase("Earth")  );
         Assertions.assertEquals("Exploring Earth", planet.getPopUp());
     }
 
     @Test
     public void findPlanetWithRadiusOf58232(){
         var planet = new PlanetPage(driver);
-        planet.clickExplore(new RadiusMatchingStrategy(58232));
+        planet.clickExplore(p -> p.getRadius() == 58232);
         Assertions.assertEquals("Exploring Saturn", planet.getPopUp());
     }
 
     @Test
     public void findPlanetWithDistanceOf57910000(){
         var planet = new PlanetPage(driver);
-        planet.clickExplore(new DistanceMatchingStrategy(57910000L));
+        planet.clickExplore(p -> p.getDistance() == 57910000L);
         Assertions.assertEquals("Exploring Mercury", planet.getPopUp());
     }
+
+//    @Test
+//    public void findPlanetWithFurthestDistance(){
+//        var planet = new PlanetPage(driver);
+//        planet.clickExplore(new DistanceMatchingStrategy(57910000L));
+//        Assertions.assertEquals("Exploring Mercury", planet.getPopUp());
+//    }
 
 
     @AfterEach
