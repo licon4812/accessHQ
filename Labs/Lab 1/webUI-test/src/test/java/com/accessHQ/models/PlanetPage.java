@@ -1,5 +1,6 @@
 package com.accessHQ.models;
 
+import com.accessHQ.strategies.MatchingStrategy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,19 +17,9 @@ public class PlanetPage {
         this.driver = driver;
     }
 
-    public void clickExploreByName(String planetName) {
+    public void clickExplore(MatchingStrategy strategy) {
         for(Planet planet: getPlanets()){
-            if(planet.getName().equalsIgnoreCase(planetName)){
-                planet.clickExploreButton();
-                waitForPopupMessage();
-                break;
-            }
-        }
-    }
-
-    public void clickExploreByRadius(double radius) {
-        for(Planet planet: getPlanets()){
-            if(planet.getRadius().equals(radius)){
+            if(strategy.match(planet)){
                 planet.clickExploreButton();
                 waitForPopupMessage();
                 break;

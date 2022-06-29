@@ -1,6 +1,8 @@
 package com.accessHQ.test;
 
 import com.accessHQ.models.PlanetPage;
+import com.accessHQ.strategies.NameMatchingStrategy;
+import com.accessHQ.strategies.RadiusMatchingStrategy;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,14 +22,14 @@ public class TestPlanetsSuite {
     @Test
     public void testEarthExplore(){
         var planet = new PlanetPage(driver);
-        planet.clickExploreByName("Earth");
+        planet.clickExplore(new NameMatchingStrategy("Earth"));
         Assertions.assertEquals("Exploring Earth", planet.getPopUp());
     }
 
     @Test
     public void findPlanetWithRadiusOf58232(){
         var planet = new PlanetPage(driver);
-        planet.clickExploreByRadius(58232);
+        planet.clickExplore(new RadiusMatchingStrategy(58232));
         Assertions.assertEquals("Exploring Saturn", planet.getPopUp());
     }
 
