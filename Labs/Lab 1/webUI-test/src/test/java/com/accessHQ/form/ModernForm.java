@@ -7,10 +7,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Form {
+public class ModernForm {
     private ChromeDriver driver;
 
-    public Form(ChromeDriver driver) {
+    public ModernForm(ChromeDriver driver) {
         this.driver = driver;
     }
 

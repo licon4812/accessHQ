@@ -1,6 +1,7 @@
 package com.accessHQ.test;
 
-import com.accessHQ.form.Form;
+import com.accessHQ.form.ModernForm;
+import com.accessHQ.form.TraditionalForm;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,8 +24,8 @@ public class TestFormSuite {
     }
 
     @Test
-    public void SubmitForm(){
-        var form = new Form(driver);
+    public void TestModernForm(){
+        var form = new ModernForm(driver);
         form.setName("James");
         form.setEmail("jalickolli@gmail.com");
         form.setState("NSW");
@@ -32,6 +33,15 @@ public class TestFormSuite {
         form.clickSubmit();
         form.getPopUp();
         Assertions.assertEquals("Thanks for your feedback James", form.getPopUp());
+    }
+
+    @Test
+    public void TestTraditionalForm(){
+        var form = new TraditionalForm(driver);
+        form.openForm();
+        form.setAddress("31 Champagne Drive Tweed Heads South");
+        form.setGender("Male");
+        form.clickAllow();
     }
 
     @AfterEach
