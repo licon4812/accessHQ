@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.NumberFormat;
+
 public class Planet {
     private final WebElement planetWebElement;
 
@@ -18,5 +20,12 @@ public class Planet {
 
     public String getName() {
         return planetWebElement.findElement(By.className("name")).getText();
+    }
+
+    public Double getRadius() {
+       var radius = planetWebElement.findElement(By.className("radius")).getText();
+       radius = radius.replace(",","");
+       radius = radius.replace("km","");
+       return Double.parseDouble(radius);
     }
 }

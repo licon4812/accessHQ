@@ -19,10 +19,18 @@ public class TestPlanetsSuite {
 
     @Test
     public void testEarthExplore(){
-        var planet = new PlanetPage(driver, "Earth");
-        planet.clickExplore("Earth");
+        var planet = new PlanetPage(driver);
+        planet.clickExploreByName("Earth");
         Assertions.assertEquals("Exploring Earth", planet.getPopUp());
     }
+
+    @Test
+    public void findPlanetWithRadiusOf58232(){
+        var planet = new PlanetPage(driver);
+        planet.clickExploreByRadius(58232);
+        Assertions.assertEquals("Exploring Saturn", planet.getPopUp());
+    }
+
 
     @AfterEach
     public void tearDown(){

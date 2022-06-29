@@ -11,17 +11,24 @@ import java.util.List;
 
 public class PlanetPage {
     private final ChromeDriver driver;
-    private final String planetName;
-    private final WebElement planetWebElement;
 
-    public PlanetPage(ChromeDriver driver, String planetName) {
+    public PlanetPage(ChromeDriver driver) {
         this.driver = driver;
-        this.planetName = planetName;
-        planetWebElement = null;
     }
-    public void clickExplore(String planetName) {
+
+    public void clickExploreByName(String planetName) {
         for(Planet planet: getPlanets()){
             if(planet.getName().equalsIgnoreCase(planetName)){
+                planet.clickExploreButton();
+                waitForPopupMessage();
+                break;
+            }
+        }
+    }
+
+    public void clickExploreByRadius(double radius) {
+        for(Planet planet: getPlanets()){
+            if(planet.getRadius().equals(radius)){
                 planet.clickExploreButton();
                 waitForPopupMessage();
                 break;
@@ -45,4 +52,5 @@ public class PlanetPage {
     public String getPopUp() {
         return driver.findElement(By.className("popup-message")).getText();
     }
+
 }
