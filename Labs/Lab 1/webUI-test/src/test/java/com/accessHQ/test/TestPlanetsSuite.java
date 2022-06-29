@@ -1,5 +1,6 @@
 package com.accessHQ.test;
 
+import com.accessHQ.models.Nav;
 import com.accessHQ.models.PlanetPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -13,29 +14,35 @@ public class TestPlanetsSuite {
     @BeforeEach
     public void setup(){
         driver = new ChromeDriver();
-        driver.get("https://d18u5zoaatmpxx.cloudfront.net/index.html#/planets");
+        driver.get("https://d18u5zoaatmpxx.cloudfront.net/index.html#");
         driver.manage().window().maximize();
     }
 
     @Test
     public void testEarthExplore(){
-        var planet = new PlanetPage(driver);
-        planet.clickExplore(p -> p.getName().equalsIgnoreCase("Earth")  );
-        Assertions.assertEquals("Exploring Earth", planet.getPopUp());
+        Nav nav = new Nav(driver,"Planets");
+        nav.clickTab();
+        var planetPage = new PlanetPage(driver);
+        planetPage.clickExplore(p -> p.getName().equalsIgnoreCase("Earth")  );
+        Assertions.assertEquals("Exploring Earth", planetPage.getPopUp());
     }
 
     @Test
     public void findPlanetWithRadiusOf58232(){
-        var planet = new PlanetPage(driver);
-        planet.clickExplore(p -> p.getRadius() == 58232);
-        Assertions.assertEquals("Exploring Saturn", planet.getPopUp());
+        Nav nav = new Nav(driver,"Planets");
+        nav.clickTab();
+        var planetPage = new PlanetPage(driver);
+        planetPage.clickExplore(p -> p.getRadius() == 58232);
+        Assertions.assertEquals("Exploring Saturn", planetPage.getPopUp());
     }
 
     @Test
     public void findPlanetWithDistanceOf57910000(){
-        var planet = new PlanetPage(driver);
-        planet.clickExplore(p -> p.getDistance() == 57910000L);
-        Assertions.assertEquals("Exploring Mercury", planet.getPopUp());
+        Nav nav = new Nav(driver,"Planets");
+        nav.clickTab();
+        var planetPage = new PlanetPage(driver);
+        planetPage.clickExplore(p -> p.getDistance() == 57910000L);
+        Assertions.assertEquals("Exploring Mercury", planetPage.getPopUp());
     }
 
 //    @Test
