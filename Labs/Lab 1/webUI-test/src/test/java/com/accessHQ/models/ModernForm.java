@@ -1,4 +1,4 @@
-package com.accessHQ.form;
+package com.accessHQ.models;
 
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;

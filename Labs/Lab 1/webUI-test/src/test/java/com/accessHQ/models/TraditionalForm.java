@@ -1,4 +1,4 @@
-package com.accessHQ.form;
+package com.accessHQ.models;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
