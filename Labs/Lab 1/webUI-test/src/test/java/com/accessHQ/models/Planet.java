@@ -36,4 +36,5 @@ public class Planet {
         distance = distance.replace("km","");
         return Long.parseLong(distance);
     }
+
 }

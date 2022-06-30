@@ -23,7 +23,7 @@ public class TestPlanetsSuite {
         Nav nav = new Nav(driver,"Planets");
         nav.clickTab();
         var planetPage = new PlanetPage(driver);
-        planetPage.clickExplore(p -> p.getName().equalsIgnoreCase("Earth")  );
+        planetPage.getPlanet(p -> p.getName().equalsIgnoreCase("Earth"));
         Assertions.assertEquals("Exploring Earth", planetPage.getPopUp());
     }
 
@@ -32,7 +32,7 @@ public class TestPlanetsSuite {
         Nav nav = new Nav(driver,"Planets");
         nav.clickTab();
         var planetPage = new PlanetPage(driver);
-        planetPage.clickExplore(p -> p.getRadius() == 58232);
+        planetPage.getPlanet(p -> p.getRadius() == 58232);
         Assertions.assertEquals("Exploring Saturn", planetPage.getPopUp());
     }
 
@@ -41,17 +41,9 @@ public class TestPlanetsSuite {
         Nav nav = new Nav(driver,"Planets");
         nav.clickTab();
         var planetPage = new PlanetPage(driver);
-        planetPage.clickExplore(p -> p.getDistance() == 57910000L);
+        planetPage.getPlanet(p -> p.getDistance() == 57910000L);
         Assertions.assertEquals("Exploring Mercury", planetPage.getPopUp());
     }
-
-//    @Test
-//    public void findPlanetWithFurthestDistance(){
-//        var planet = new PlanetPage(driver);
-//        planet.clickExplore(new DistanceMatchingStrategy(57910000L));
-//        Assertions.assertEquals("Exploring Mercury", planet.getPopUp());
-//    }
-
 
     @AfterEach
     public void tearDown(){
