@@ -24,17 +24,10 @@ namespace AccessHQ.NETTestProject
         [TestMethod]
         public void TestEarthExplore()
         {
-            foreach (WebElement currentElement in driver.FindElements(By.ClassName("planet")))
-            {
-                if (currentElement.FindElement(By.ClassName("name")).Text == "Earth")
-                {
-                    currentElement.FindElement(By.TagName("button")).Click();
-                }
-            }
-
-            var popup = driver.FindElement(By.ClassName("popup-message"));
-            new WebDriverWait(driver, new TimeSpan(1)).Until(d => d.FindElement
-                (By.ClassName("popup-message")).Displayed);
+            var planetPage = new PlanetPage(driver);
+            planetPage.clickExplore();
+            planetPage.waitForPopUp();
+            var popup = planetPage.getPopUpElement(); 
             Assert.AreEqual(expected:"Exploring Earth", actual: popup.Text);
         }
 
