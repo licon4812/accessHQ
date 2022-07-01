@@ -1,3 +1,4 @@
+using AccessHQ.NETTestProject.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -25,7 +26,7 @@ namespace AccessHQ.NETTestProject
         public void TestEarthExplore()
         {
             var planetPage = new PlanetPage(driver);
-            planetPage.clickExplore();
+            planetPage.clickExplore(p=> p.getName().Equals("Earth".ToLower()));
             planetPage.waitForPopUp();
             var popup = planetPage.getPopUpElement(); 
             Assert.AreEqual(expected:"Exploring Earth", actual: popup.Text);

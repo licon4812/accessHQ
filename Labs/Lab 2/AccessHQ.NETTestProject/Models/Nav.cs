@@ -1,11 +1,6 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AccessHQ.NETTestProject
+namespace AccessHQ.NETTestProject.Models
 {
     internal class Nav
     {
@@ -13,7 +8,7 @@ namespace AccessHQ.NETTestProject
 
         public Nav(WebDriver driver)
         {
-            this.driver = driver;            
+            this.driver = driver;
         }
 
         public void NavigateToPlanets()
