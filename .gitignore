@@ -555,3 +555,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+#Visual Studio
+.vs/*
+spec/
+obj/
+bin/
